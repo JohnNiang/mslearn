@@ -8,7 +8,7 @@ import lombok.Data;
  * @author johnniang
  */
 @Data
-public class Multiplication {
+public final class Multiplication {
 
     private int factorA;
 
@@ -19,5 +19,6 @@ public class Multiplication {
     public Multiplication(int factorA, int factorB) {
         this.factorA = factorA;
         this.factorB = factorB;
+        this.result = this.factorA * this.factorB;
     }
 }

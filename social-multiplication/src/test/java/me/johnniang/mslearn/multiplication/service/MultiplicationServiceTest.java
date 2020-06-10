@@ -1,22 +1,26 @@
 package me.johnniang.mslearn.multiplication.service;
 
 import me.johnniang.mslearn.multiplication.domain.Multiplication;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
-@SpringBootTest
 class MultiplicationServiceTest {
 
-    @MockBean
+    @Mock
     RandomGeneratorService randomGeneratorService;
 
-    @Autowired
-    MultiplicationService multiplicationService;
+    MultiplicationServiceImpl multiplicationServiceImpl;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
+    }
 
     @Test
     void createRandomMultiplicationTest() {
@@ -24,7 +28,7 @@ class MultiplicationServiceTest {
         given(randomGeneratorService.generateRandomFactor()).willReturn(50, 30);
 
         // when:
-        Multiplication multiplication = multiplicationService.createRandomMultiplication();
+        Multiplication multiplication = multiplicationServiceImpl.createRandomMultiplication();
 
         // then：
         assertEquals(50, multiplication.getFactorA());
