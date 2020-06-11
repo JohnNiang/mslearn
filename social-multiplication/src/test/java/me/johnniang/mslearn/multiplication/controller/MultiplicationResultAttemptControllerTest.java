@@ -35,7 +35,7 @@ class MultiplicationResultAttemptControllerTest {
     MockMvc mvc;
 
     JacksonTester<MultiplicationResultAttempt> jsonResult;
-    JacksonTester<ResultResponse> jsonResponse;
+    JacksonTester<MultiplicationResultAttempt> jsonResponse;
 
     @BeforeEach
     void setUp() {
@@ -58,7 +58,7 @@ class MultiplicationResultAttemptControllerTest {
             .willReturn(correct);
         User user = new User("John");
         Multiplication multiplication = new Multiplication(60, 80);
-        MultiplicationResultAttempt resultAttempt = new MultiplicationResultAttempt(user, multiplication, 4800);
+        MultiplicationResultAttempt resultAttempt = new MultiplicationResultAttempt(user, multiplication, 4800, false);
 
         // when
         MockHttpServletResponse response = mvc.perform(
@@ -71,6 +71,11 @@ class MultiplicationResultAttemptControllerTest {
             .getResponse();
 
         // then
-        Assertions.assertEquals(jsonResponse.write(new ResultResponse(correct)).getJson(), response.getContentAsString());
+        Assertions.assertEquals(jsonResponse.write(
+            new MultiplicationResultAttempt(resultAttempt.getUser(),
+                resultAttempt.getMultiplication(),
+                resultAttempt.getResultAttempt(),
+                correct)
+        ).getJson(), response.getContentAsString());
     }
 }

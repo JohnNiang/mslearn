@@ -43,7 +43,7 @@ class MultiplicationServiceTest {
         // given
         User user = new User("John");
         Multiplication multiplication = new Multiplication(40, 60);
-        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 2400);
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 2400, false);
 
         // when
         boolean attemptResult = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);
@@ -57,7 +57,7 @@ class MultiplicationServiceTest {
         // given
         User user = new User("John");
         Multiplication multiplication = new Multiplication(40, 60);
-        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 3000, false);
 
         // when
         boolean attemptResult = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);

@@ -21,8 +21,12 @@ public class MultiplicationResultAttemptController {
     }
 
     @PostMapping
-    ResultResponse postResult(@RequestBody MultiplicationResultAttempt resultAttempt) {
-        return new ResultResponse(multiplicationService.checkAttempt(resultAttempt));
+    MultiplicationResultAttempt postResult(@RequestBody MultiplicationResultAttempt resultAttempt) {
+        boolean correct = multiplicationService.checkAttempt(resultAttempt);
+        return new MultiplicationResultAttempt(resultAttempt.getUser(),
+            resultAttempt.getMultiplication(),
+            resultAttempt.getResultAttempt(),
+            correct);
     }
 
     @Data

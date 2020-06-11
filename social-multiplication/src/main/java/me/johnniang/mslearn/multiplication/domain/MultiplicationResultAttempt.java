@@ -13,6 +13,8 @@ public final class MultiplicationResultAttempt {
 
     private final int resultAttempt;
 
+    private final boolean correct;
+
     /**
      * Only for json deserialization
      */
@@ -20,6 +22,7 @@ public final class MultiplicationResultAttempt {
         user = null;
         multiplication = null;
         resultAttempt = -1;
+        correct = false;
     }
 }
 
