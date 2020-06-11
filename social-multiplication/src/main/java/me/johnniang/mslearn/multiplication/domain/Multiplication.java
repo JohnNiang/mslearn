@@ -10,15 +10,16 @@ import lombok.Data;
 @Data
 public final class Multiplication {
 
-    private int factorA;
+    private final int factorA;
 
-    private int factorB;
+    private final int factorB;
 
-    private int result;
+    Multiplication() {
+        this(0, 0);
+    }
 
     public Multiplication(int factorA, int factorB) {
         this.factorA = factorA;
         this.factorB = factorB;
-        this.result = this.factorA * this.factorB;
     }
 }
