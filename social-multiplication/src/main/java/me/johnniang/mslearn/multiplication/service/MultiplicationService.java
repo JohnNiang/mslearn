@@ -3,6 +3,8 @@ package me.johnniang.mslearn.multiplication.service;
 import me.johnniang.mslearn.multiplication.domain.Multiplication;
 import me.johnniang.mslearn.multiplication.domain.MultiplicationResultAttempt;
 
+import java.util.List;
+
 public interface MultiplicationService {
 
     /**
@@ -17,4 +19,6 @@ public interface MultiplicationService {
      * @return true if the attempt matches the result of the multiplication, false otherwise.
      */
     boolean checkAttempt(MultiplicationResultAttempt resultAttempt);
+
+    List<MultiplicationResultAttempt> getStatsForUser(String userAlias);
 }

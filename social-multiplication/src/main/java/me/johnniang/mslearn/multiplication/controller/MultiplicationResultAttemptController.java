@@ -1,14 +1,10 @@
 package me.johnniang.mslearn.multiplication.controller;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import me.johnniang.mslearn.multiplication.domain.MultiplicationResultAttempt;
 import me.johnniang.mslearn.multiplication.service.MultiplicationService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/results")
@@ -29,10 +25,8 @@ public class MultiplicationResultAttemptController {
             correct);
     }
 
-    @Data
-    @RequiredArgsConstructor
-    @NoArgsConstructor(force = true)
-    public static final class ResultResponse {
-        private final boolean correct;
+    @GetMapping
+    List<MultiplicationResultAttempt> getStatistics(@RequestParam("alias") String alias) {
+        return multiplicationService.getStatsForUser(alias);
     }
 }
